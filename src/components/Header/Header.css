@@ -1,0 +1,75 @@
+/* import {config} from '../../utils/config'; */
+
+.header {
+  width: 100vw;
+  height: 12vh; /* Increased from 12vh to give more space for larger logo */
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.header__logo-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  left: -50px; /* Move logo left */
+}
+
+.header__logo {
+  height: 150px; /* Increased to compensate for SVG whitespace */
+  width: auto;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.header__title {
+  margin: 0;
+  font-size: 30px; /* Reduced size */
+  color: #f8931f;
+  left: -40px; /* Move title left */
+  position: relative;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+}
+
+.header__nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 30px;
+  margin-right: 30px; /* Move nav right */
+}
+
+.header__nav-item {
+  color: #1b1464;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  margin-bottom: 0;
+}
+
+.header__nav-item:hover {
+  color: #f8931f;
+}
+
+.header__username {
+  color: #f8931f;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.header__avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ccc; /* Placeholder color */
+}
