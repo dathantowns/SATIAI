@@ -1,11 +1,7 @@
 import "./Main.css";
 
-function Main() {
-  return (
-    <main className="main">
-      <h1>Main Content</h1>
-    </main>
-  );
+function Main({ children }) {
+  return <main className="main">{children}</main>;
 }
 
 export default Main;
