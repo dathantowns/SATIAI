@@ -1,0 +1,12 @@
+.footer {
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  color: #1b1464;
+}
+
+.footer__text {
+  margin: 0 auto;
+  font-size: 14px;
+}

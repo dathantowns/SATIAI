@@ -1,10 +1,14 @@
 import React from "react";
+import "./Home.css";
+import homeBg from "../../assets/homeBg.avif";
+import Button from "../../components/Button/Button";
 
 function Home() {
   return (
     <div className="home">
-      <h2>Welcome to SATI Lecture Mentor</h2>
-      <p>Your AI-powered learning companion</p>
+      <img src={homeBg} alt="Background" className="home__bg" />
+      <h1 className="home__title">Unlock Understanding.</h1>
+      <Button>Create Account</Button>
     </div>
   );
 }

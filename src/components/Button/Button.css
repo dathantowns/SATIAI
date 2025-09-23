@@ -1,0 +1,18 @@
+.button__primary {
+  background-color: #1b1464;
+  width: 350px;
+  height: 100px;
+  cursor: pointer;
+  font-size: 25px;
+  border: none;
+  transition: background-color 0.5s ease;
+}
+
+.button__primary:hover {
+  background-color: #f8931f;
+  color: white;
+}
+
+.button__primary:focus {
+  outline: none;
+}

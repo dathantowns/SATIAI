@@ -2,9 +2,11 @@ import "./Footer.css";
 
 function Footer() {
   return (
-    <>
-      <p>Footer</p>
-    </>
+    <footer className="footer">
+      <p className="footer__text">
+        © 2024 SATI Lecture Mentor. All rights reserved.
+      </p>
+    </footer>
   );
 }
 

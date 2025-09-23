@@ -1,5 +1,6 @@
 .main {
-  min-height: calc(100vh - 12vh); /* Subtract header height */
+  min-height: calc(100vh - 25vh); /* Subtract header height */
   padding: 20px;
-  padding-top: 40px; /* Add space below header */
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
