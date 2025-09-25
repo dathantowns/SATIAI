@@ -1,15 +1,21 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Upload.css";
 import uploadBg from "../../assets/uploadBg.avif";
 import Button from "../../components/Button/Button";
 import { uploadAudio as uploadAudioAPI, uploadText } from "../../../utils/api";
+import { useFeedback } from "../../contexts/FeedbackContext";
 
 function Upload() {
+  const navigate = useNavigate();
   const audioFileInputRef = useRef(null);
   const textFileInputRef = useRef(null);
   const [selectedAudioFile, setSelectedAudioFile] = useState(null);
   const [selectedTextFile, setSelectedTextFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
+
+  // Use feedback context
+  const { feedback, updateFeedback, setFeedbackLoading } = useFeedback();
 
   const handleAudioButtonClick = () => {
     // Trigger the hidden file input
@@ -91,7 +97,8 @@ function Upload() {
     uploadAudioAPI(formData)
       .then((result) => {
         console.log("Upload successful:", result);
-        alert(`Audio file "${file.name}" uploaded successfully!`);
+        console.log("Feedback received:", result.feedback);
+        updateFeedback(result.feedback);
       })
       .catch((error) => {
         console.error("Upload error:", error);
@@ -99,6 +106,8 @@ function Upload() {
       })
       .finally(() => {
         setIsUploading(false);
+        setFeedbackLoading(false);
+        navigate("/feedback");
       });
   };
 
@@ -174,10 +183,13 @@ function Upload() {
 
     console.log("Uploading text file:", file.name);
 
+    setFeedbackLoading(true);
+
     uploadText(formData)
       .then((result) => {
         console.log("Upload successful:", result);
-        alert(`Text file "${file.name}" uploaded successfully!`);
+        console.log("Feedback received:", result.feedback);
+        updateFeedback(result.feedback);
       })
       .catch((error) => {
         console.error("Upload error:", error);
@@ -185,6 +197,8 @@ function Upload() {
       })
       .finally(() => {
         setIsUploading(false);
+        setFeedbackLoading(false);
+        navigate("/feedback");
       });
   };
 

@@ -1,0 +1,110 @@
+.feedback-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 16px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  min-height: 120px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.feedback-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.feedback-card__header {
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 8px;
+}
+
+.feedback-card__title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: inherit;
+}
+
+.feedback-card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.feedback-card__text {
+  margin: 0;
+  line-height: 1.6;
+  color: inherit;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+/* Color Variants */
+.feedback-card--default {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.feedback-card--success {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+}
+
+.feedback-card--warning {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+}
+
+.feedback-card--info {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  color: #333;
+}
+
+.feedback-card--primary {
+  background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+  color: #333;
+}
+
+.feedback-card--secondary {
+  background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+  color: white;
+}
+
+.feedback-card--dark {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: white;
+}
+
+.feedback-card--light {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  color: #333;
+  border: 1px solid #dee2e6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .feedback-card {
+    padding: 16px;
+    margin: 12px 0;
+  }
+
+  .feedback-card__title {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .feedback-card {
+    padding: 12px;
+    margin: 8px 0;
+  }
+
+  .feedback-card__title {
+    font-size: 1rem;
+  }
+}

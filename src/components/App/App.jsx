@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { FeedbackProvider } from "../../contexts/FeedbackContext";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -10,6 +11,7 @@ import Home from "../../pages/Home/Home";
 import About from "../../pages/About/About";
 import Profile from "../../pages/Profile/Profile";
 import Upload from "../../pages/Upload/Upload";
+import Feedback from "../../pages/Feedback/Feedback";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
@@ -142,43 +144,46 @@ function App() {
     <CurrentUserContext.Provider
       value={{ currentUser, setCurrentUser, isLoggedIn, setIsLoggedIn }}
     >
-      <Header
-        openLoginModal={openLoginModal}
-        openRegisterModal={openRegisterModal}
-      />
-      <Main>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              isLoggedIn ? <Upload /> : <Home seeModal={openRegisterModal} />
-            }
-          />
-          <Route path="/about" element={<About />} />
-          <Route path="/profile" element={<Profile />} />
-        </Routes>
-      </Main>
-      <Footer />
+      <FeedbackProvider>
+        <Header
+          openLoginModal={openLoginModal}
+          openRegisterModal={openRegisterModal}
+        />
+        <Main>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                isLoggedIn ? <Upload /> : <Home seeModal={openRegisterModal} />
+              }
+            />
+            <Route path="/about" element={<About />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/feedback" element={<Feedback />} />
+          </Routes>
+        </Main>
+        <Footer />
 
-      <LoginModal
-        closeModal={onClose}
-        seeModal={seeLoginModal}
-        handleLoginSubmit={handleLoginSubmit}
-        openRegisterModal={openRegisterModal}
-      />
+        <LoginModal
+          closeModal={onClose}
+          seeModal={seeLoginModal}
+          handleLoginSubmit={handleLoginSubmit}
+          openRegisterModal={openRegisterModal}
+        />
 
-      <RegisterModal
-        closeModal={onClose}
-        seeModal={seeRegisterModal}
-        handleRegisterSubmit={handleRegisterSubmit}
-        openLoginModal={openLoginModal}
-      />
+        <RegisterModal
+          closeModal={onClose}
+          seeModal={seeRegisterModal}
+          handleRegisterSubmit={handleRegisterSubmit}
+          openLoginModal={openLoginModal}
+        />
 
-      <EditProfileModal
-        closeModal={onClose}
-        seeModal={seeEditProfileModal}
-        handleEditProfileSubmit={handleEditProfileSubmit}
-      />
+        <EditProfileModal
+          closeModal={onClose}
+          seeModal={seeEditProfileModal}
+          handleEditProfileSubmit={handleEditProfileSubmit}
+        />
+      </FeedbackProvider>
     </CurrentUserContext.Provider>
   );
 }
