@@ -1,4 +1,4 @@
-.login-modal {
+.edit-profile-modal {
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
@@ -18,40 +18,37 @@
   font-size: 16px;
   line-height: 20px;
 }
-
-.login-modal_opened {
+.edit-profile-modal__header {
   visibility: visible;
   opacity: 1;
   transition: opacity 0.3s ease-out;
+  margin: 0;
 }
-
-.login-modal__container {
+.edit-profile-modal__container {
   background-color: white;
   padding: 32px 50px 0;
   width: 100%;
   max-width: 496px;
   height: min-content;
   border-radius: 8px;
+  height: 16px;
 }
 
-.login-modal__content {
-  position: relative;
-}
-
-.login-modal__header {
+.edit-profile-modal__header {
   display: flex;
   justify-content: space-between;
-  margin: 0 0 24px 0;
+  margin: 0 0 32px 0;
 }
 
-.login-modal__title {
+.edit-profile-modal__title {
   margin: 0;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
+  border: none;
 }
 
-.login-modal__close-btn {
+.edit-profile-modal__close-btn {
   background-image: url(../../images/close-button.svg);
   background-size: cover;
   width: 16px;
@@ -62,105 +59,76 @@
   border: none;
   cursor: pointer;
 }
-
-.login-modal__close-btn:hover {
+.edit-profile-modal__close-btn:hover {
   opacity: 100%;
+  border: none;
 }
-
-.login-modal__fieldset {
+.edit-profile-modal__form {
   display: flex;
   flex-direction: column;
   padding: 0;
   border: none;
 }
 
-.login-modal__label {
-  margin-bottom: 8px;
+.edit-profile-modal__label {
+  margin-bottom: 32px;
 }
 
-.login-modal__input {
+.edit-profile-modal__input {
   width: 100%;
-  margin-bottom: 24px;
-  padding: 4px 0;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 16px 0;
   font-family: "Cabinet", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
   border: none;
-  color: #1b1464;
   border-bottom: 1px solid;
-  background-color: transparent;
 }
-
-.login-modal__input::placeholder {
+.edit-profile-modal__input::placeholder {
   color: rgba(0, 0, 0, 0.5);
 }
-
-.login-modal__input:hover {
+.edit-profile-modal__input:hover {
   border-bottom: 2px solid;
 }
-
-.login-modal__input:focus {
+.edit-profile-modal__input:focus {
   border-color: initial;
   outline: none;
 }
 
-.login-modal__input_type_error {
-  border: 1px solid rgba(255, 0, 0, 0.6);
-}
-
-.login-modal__input_type_error:hover {
-  border: 1px solid rgba(255, 0, 0, 0.6);
-}
-
-.login-modal__input-error {
+.edit-profile-modal__input-error {
   font-weight: 500;
   font-size: 16px;
   line-height: 110.00000000000001%;
   color: rgba(255, 0, 0, 0.7);
   visibility: hidden;
 }
-
-.login-modal__input-error_visible {
+.edit-profile-modal__input-error_visible {
   visibility: visible;
 }
 
-.login-modal__save-btn {
+.edit-profile-modal__buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.edit-profile-modal__save-btn {
   width: max-content;
   padding: 8px 16px;
   color: rgba(252, 245, 229, 1);
   background-color: rgba(33, 33, 33, 1);
   border-radius: 4px;
+  margin-bottom: 32px;
   transition: background-color 0.5s ease;
   cursor: pointer;
   border: none;
 }
-
-.login-modal__save-btn:hover {
+.edit-profile-modal__save-btn:hover {
   background-color: rgba(33, 33, 33, 0.6);
 }
-
-.login-modal__save-btn_disabled {
+.edit-profile-modal__save-btn_disabled {
   background-color: rgba(33, 33, 33, 0.3);
-}
-
-.login-modal__register-btn {
-  background: none;
-  border: none;
-  width: max-content;
-  color: rgba(0, 0, 0, 0.5);
-  font-family: "Cabinet", sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-  cursor: pointer;
-  text-decoration: none;
-  padding: 0;
-  position: relative;
-  top: 25px;
-  left: 79px;
-}
-
-.login-modal__register-btn:hover {
-  color: rgba(0, 0, 0, 1);
 }

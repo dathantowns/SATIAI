@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import { useUser } from "../../contexts/UserContext";
 import "./Header.css";
 import satiLogo from "../../assets/satiLogo.svg";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Header() {
-  const { isSignedIn } = useUser();
+function Header(props) {
+  const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
 
   return (
     <header className="header">
@@ -18,7 +19,7 @@ function Header() {
       </div>
       <div className="header__nav">
         <ul className="header__nav-list">
-          {isSignedIn ? (
+          {isLoggedIn ? (
             // Navigation for signed-in users
             <>
               <li className="header__nav-item">
@@ -31,16 +32,23 @@ function Header() {
           ) : (
             // Navigation for signed-out users
             <>
-              <li className="header__nav-item">Login</li>
-              <li className="header__nav-item">Sign Up</li>
+              <li className="header__nav-item" onClick={props.openLoginModal}>
+                Login
+              </li>
+              <li
+                className="header__nav-item"
+                onClick={props.openRegisterModal}
+              >
+                Sign Up
+              </li>
               <li className="header__nav-item">
                 <Link to="/about">About</Link>
               </li>
             </>
           )}
         </ul>
-        {isSignedIn && <p className="header__username">User Name</p>}
-        {isSignedIn && <div className="header__avatar"></div>}
+        {isLoggedIn && <p className="header__username">{currentUser.name}</p>}
+        {isLoggedIn && <div className="header__avatar"></div>}
       </div>
     </header>
   );

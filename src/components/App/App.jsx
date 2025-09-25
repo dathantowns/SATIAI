@@ -1,28 +1,174 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
-import { UserProvider } from "../../contexts/UserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import Home from "../../pages/Home/Home";
 import About from "../../pages/About/About";
 import Profile from "../../pages/Profile/Profile";
+import LoginModal from "../LoginModal/LoginModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import { login, register, checkToken } from "../../../utils/auth";
+import { getUserData, updateUserData } from "../../../utils/api";
 
+// Inner component that has access to context
 function App() {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [seeLoginModal, setSeeLoginModal] = useState(false);
+  const [seeRegisterModal, setSeeRegisterModal] = useState(false);
+  const [seeEditProfileModal, setSeeEditProfileModal] = useState(false);
+  const routerLocation = useLocation();
+  const navigate = useNavigate();
+  //RegisterModal functions
+  const openRegisterModal = () => {
+    setSeeRegisterModal(true);
+  };
+
+  const handleRegisterSubmit = (userData) => {
+    register(userData)
+      .then((data) => {
+        console.log("Registration successful:", data);
+        return login({ email: userData.email, password: userData.password });
+      })
+      .then((loginData) => {
+        if (loginData && loginData.token) {
+          localStorage.setItem("jwt", loginData.token);
+        }
+        setSeeRegisterModal(false);
+        const token = loginData?.token || localStorage.getItem("jwt");
+        if (token) {
+          getUserData(token)
+            .then((userData) => {
+              signIn(userData.data); // Use context method
+            })
+            .catch((err) => {
+              console.error(
+                "Failed to fetch user data after registration:",
+                err
+              );
+            });
+        }
+      })
+      .catch((error) => {
+        console.error("Registration error:", error);
+      });
+  };
+  // loginModal functions
+  const openLoginModal = () => {
+    setSeeLoginModal(true);
+  };
+
+  const handleLoginSubmit = (credentials) => {
+    login(credentials)
+      .then(() => {
+        setSeeLoginModal(false);
+        const token = localStorage.getItem("jwt");
+        if (token) {
+          getUserData(token)
+            .then((userData) => {
+              console.log("User data fetched after login:", userData);
+              setCurrentUser(userData.data);
+              const redirectPath = routerLocation.state?.from?.pathname || "/";
+              navigate(redirectPath, { replace: true });
+              setIsLoggedIn(true);
+            })
+            .catch((err) => {
+              console.error("Failed to fetch user data after login:", err);
+            });
+        }
+      })
+      .catch((error) => {
+        console.error("Login error:", error);
+      });
+  };
+
+  const handleLogOut = () => {
+    localStorage.removeItem("jwt");
+    signOut(); // Use context method
+    // Handle navigation here
+  };
+
+  const onClose = () => {
+    setSeeLoginModal(false);
+    setSeeRegisterModal(false);
+    setSeeEditProfileModal(false);
+  };
+
+  //editProfile Modal functions
+  const openEditProfileModal = () => {
+    setSeeEditProfileModal(true);
+  };
+
+  const handleEditProfileSubmit = (data) => {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      updateUserData(token, data)
+        .then((res) => {
+          setCurrentUser(res.data);
+          setSeeEditProfileModal(false);
+        })
+        .catch((err) => handleError(err));
+    }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      getUserData(token)
+        .then((userData) => {
+          setCurrentUser(userData.data);
+          setIsLoggedIn(true);
+        })
+        .catch((err) => {
+          setIsLoggedIn(false);
+          localStorage.removeItem("jwt");
+          console.error("Token invalid or expired:", err);
+        });
+    }
+  }, []);
+
   return (
-    <UserProvider>
-      <Router>
-        <Header />
-        <Main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/profile" element={<Profile />} />
-          </Routes>
-        </Main>
-        <Footer />
-      </Router>
-    </UserProvider>
+    <CurrentUserContext.Provider
+      value={{ currentUser, setCurrentUser, isLoggedIn, setIsLoggedIn }}
+    >
+      <Header
+        openLoginModal={openLoginModal}
+        openRegisterModal={openRegisterModal}
+      />
+      <Main>
+        <Routes>
+          <Route path="/" element={isLoggedIn ? <Home /> : <Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </Main>
+      <Footer />
+
+      <LoginModal
+        closeModal={onClose}
+        seeModal={seeLoginModal}
+        handleLoginSubmit={handleLoginSubmit}
+        openRegisterModal={openRegisterModal}
+      />
+
+      <RegisterModal
+        closeModal={onClose}
+        seeModal={seeRegisterModal}
+        handleRegisterSubmit={handleRegisterSubmit}
+        openLoginModal={openLoginModal}
+      />
+
+      <EditProfileModal
+        closeModal={onClose}
+        seeModal={seeEditProfileModal}
+        handleEditProfileSubmit={handleEditProfileSubmit}
+      />
+    </CurrentUserContext.Provider>
   );
 }
 
