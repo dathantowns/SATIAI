@@ -87,17 +87,9 @@
   font-size: 16px;
   line-height: 20px;
   border: none;
+  color: #1b1464;
   border-bottom: 1px solid;
   background-color: transparent;
-}
-
-.register-modal__input:-webkit-autofill,
-.register-modal__input:-webkit-autofill:hover,
-.register-modal__input:-webkit-autofill:focus,
-.register-modal__input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px white inset !important;
-  -webkit-text-fill-color: black !important;
-  background-color: transparent !important;
 }
 
 .register-modal__input::placeholder {

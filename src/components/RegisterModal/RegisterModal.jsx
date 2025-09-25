@@ -31,14 +31,13 @@ const RegisterModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleRegisterSubmit({ name, avatar, email, password });
+    handleRegisterSubmit({ name, email, password });
   };
 
   // Reset form when modal opens
   useEffect(() => {
     if (seeModal) {
       setName("");
-      setAvatar("");
       setEmail("");
       setPassword("");
     }
@@ -102,18 +101,6 @@ const RegisterModal = ({
           maxLength="30"
         />
         <span className="register-modal__input-error" id="name-error"></span>
-      </label>
-      <label htmlFor="avatar-input" className="register-modal__label">
-        Avatar URL
-        <input
-          type="url"
-          className="register-modal__input"
-          id="avatar-input"
-          placeholder="Avatar URL"
-          value={avatar}
-          onChange={handleAvatarChange}
-        />
-        <span className="register-modal__input-error" id="avatar-error"></span>
       </label>
 
       <button

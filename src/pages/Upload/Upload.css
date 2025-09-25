@@ -1,0 +1,65 @@
+.upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh);
+  position: relative;
+  margin: -20px;
+  margin-top: -40px;
+  padding-bottom: 0px;
+}
+
+.upload__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.upload__title {
+  font-size: 100px;
+  color: white;
+  z-index: 1;
+  margin-bottom: 30px;
+  margin-top: 0;
+}
+
+.upload__buttons {
+  width: 70vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.upload__file-info {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  z-index: 1;
+  text-align: center;
+}
+
+.upload__file-info p {
+  margin: 5px 0;
+  color: #333;
+  font-weight: 500;
+}
+
+.upload__progress {
+  background-color: rgba(27, 20, 100, 0.9);
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  z-index: 1;
+  text-align: center;
+}
+
+.upload__progress p {
+  margin: 0;
+  font-weight: 500;
+}

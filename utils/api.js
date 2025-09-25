@@ -10,31 +10,13 @@ export const baseUrl =
     ? "productionLink"
     : "http://localhost:3001";
 
-export function requestApiFeedback() {
-  return fetch(`${baseUrl}/items`, {
-    headers: {
-      Authorization: `Bearer ${getToken()}`,
-    },
-  }).then(checkRes);
-}
-
-export function deleteApiItem(cardId) {
-  return fetch(`${baseUrl}/items/${cardId}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${getToken()}`,
-    },
-  }).then(checkRes);
-}
-
-export function addApiItem(card) {
-  return fetch(`${baseUrl}/items`, {
-    method: "POST",
+export function getUserFeedback(token) {
+  return fetch(`${baseUrl}/users/feedback`, {
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${getToken()}`,
+      Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(card),
   }).then(checkRes);
 }
 
@@ -76,6 +58,26 @@ export function dislikeItem(cardId) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${getToken()}`,
     },
+  }).then(checkRes);
+}
+
+export function uploadAudio(formData) {
+  return fetch(`${baseUrl}/audio`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+    body: formData,
+  }).then(checkRes);
+}
+
+export function uploadText(formData) {
+  return fetch(`${baseUrl}/text/analyze-document`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+    body: formData,
   }).then(checkRes);
 }
 

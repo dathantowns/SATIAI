@@ -9,6 +9,7 @@ import Footer from "../Footer/Footer";
 import Home from "../../pages/Home/Home";
 import About from "../../pages/About/About";
 import Profile from "../../pages/Profile/Profile";
+import Upload from "../../pages/Upload/Upload";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
@@ -31,8 +32,8 @@ function App() {
 
   const handleRegisterSubmit = (userData) => {
     register(userData)
-      .then((data) => {
-        console.log("Registration successful:", data);
+      .then((registrationResponse) => {
+        console.log("Registration successful:", registrationResponse);
         return login({ email: userData.email, password: userData.password });
       })
       .then((loginData) => {
@@ -43,8 +44,13 @@ function App() {
         const token = loginData?.token || localStorage.getItem("jwt");
         if (token) {
           getUserData(token)
-            .then((userData) => {
-              signIn(userData.data); // Use context method
+            .then((userDataResponse) => {
+              console.log(
+                "User data fetched after registration:",
+                userDataResponse
+              );
+              setCurrentUser(userDataResponse.data);
+              setIsLoggedIn(true);
             })
             .catch((err) => {
               console.error(
@@ -142,7 +148,12 @@ function App() {
       />
       <Main>
         <Routes>
-          <Route path="/" element={isLoggedIn ? <Home /> : <Home />} />
+          <Route
+            path="/"
+            element={
+              isLoggedIn ? <Upload /> : <Home seeModal={openRegisterModal} />
+            }
+          />
           <Route path="/about" element={<About />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>

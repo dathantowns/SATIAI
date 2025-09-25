@@ -11,13 +11,13 @@ export function checkToken(token) {
 }
 // Utility functions for authentication API requests
 
-export function register({ name, avatar, email, password }) {
+export function register({ name, email, password }) {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ name, avatar, email, password }),
+    body: JSON.stringify({ name, email, password }),
   }).then(checkRes);
 }
 
