@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./Upload.css";
 import uploadBg from "../../assets/uploadBg.avif";
 import Button from "../../components/Button/Button";
+import Preloader from "../../components/Preloader/Preloader";
 import { uploadAudio as uploadAudioAPI, uploadText } from "../../../utils/api";
 import { useFeedback } from "../../contexts/FeedbackContext";
 
@@ -13,6 +14,7 @@ function Upload() {
   const [selectedAudioFile, setSelectedAudioFile] = useState(null);
   const [selectedTextFile, setSelectedTextFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState("");
 
   // Use feedback context
   const { feedback, updateFeedback, setFeedbackLoading } = useFeedback();
@@ -83,6 +85,7 @@ function Upload() {
 
   const handleAudioUpload = (file) => {
     setIsUploading(true);
+    setLoadingMessage("Uploading and analyzing your audio lecture...");
 
     // Create FormData for file upload
     const formData = new FormData();
@@ -96,18 +99,23 @@ function Upload() {
 
     uploadAudioAPI(formData)
       .then((result) => {
+        setLoadingMessage("Processing complete! Preparing your feedback...");
         console.log("Upload successful:", result);
         console.log("Feedback received:", result.feedback);
         updateFeedback(result.feedback);
+
+        // Small delay to show completion message
+        setTimeout(() => {
+          navigate("/feedback");
+        }, 1000);
       })
       .catch((error) => {
         console.error("Upload error:", error);
         alert("Failed to upload audio file. Please try again.");
+        setIsUploading(false);
       })
       .finally(() => {
-        setIsUploading(false);
         setFeedbackLoading(false);
-        navigate("/feedback");
       });
   };
 
@@ -172,6 +180,7 @@ function Upload() {
 
   const handleTextUpload = (file) => {
     setIsUploading(true);
+    setLoadingMessage("Uploading and analyzing your text document...");
 
     // Create FormData for file upload
     const formData = new FormData();
@@ -187,20 +196,30 @@ function Upload() {
 
     uploadText(formData)
       .then((result) => {
+        setLoadingMessage("Processing complete! Preparing your feedback...");
         console.log("Upload successful:", result);
         console.log("Feedback received:", result.feedback);
         updateFeedback(result.feedback);
+
+        // Small delay to show completion message
+        setTimeout(() => {
+          navigate("/feedback");
+        }, 1000);
       })
       .catch((error) => {
         console.error("Upload error:", error);
         alert("Failed to upload text file. Please try again.");
+        setIsUploading(false);
       })
       .finally(() => {
-        setIsUploading(false);
         setFeedbackLoading(false);
-        navigate("/feedback");
       });
   };
+
+  // Show preloader when uploading
+  if (isUploading) {
+    return <Preloader message={loadingMessage} />;
+  }
 
   return (
     <div className="upload">
@@ -222,12 +241,8 @@ function Upload() {
       )}
 
       <div className="upload__buttons">
-        <Button onClick={handleAudioButtonClick} disabled={isUploading}>
-          {isUploading ? "Uploading..." : "Audio"}
-        </Button>
-        <Button onClick={handleTextButtonClick} disabled={isUploading}>
-          {isUploading ? "Uploading..." : "Text"}
-        </Button>
+        <Button onClick={handleAudioButtonClick}>Audio</Button>
+        <Button onClick={handleTextButtonClick}>Text</Button>
       </div>
 
       {/* Hidden file inputs */}
@@ -245,12 +260,6 @@ function Upload() {
         accept=".txt,.pdf,.doc,.docx,.rtf,.md,.html"
         style={{ display: "none" }}
       />
-
-      {isUploading && (
-        <div className="upload__progress">
-          <p>Uploading file...</p>
-        </div>
-      )}
     </div>
   );
 }
