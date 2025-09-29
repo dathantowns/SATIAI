@@ -23,6 +23,9 @@ function Header(props) {
             // Navigation for signed-in users
             <>
               <li className="header__nav-item">
+                <Link to="/">Upload</Link>
+              </li>
+              <li className="header__nav-item">
                 <Link to="/profile">Profile</Link>
               </li>
               <li className="header__nav-item">

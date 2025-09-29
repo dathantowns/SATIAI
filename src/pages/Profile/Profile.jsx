@@ -1,7 +1,27 @@
 import React from "react";
 import "./Profile.css";
+import { getUserFeedback } from "../../../utils/api";
+import { useState, useEffect } from "react";
+import { useFeedback } from "../../contexts/FeedbackContext";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
+  const { feedback, updateFeedback } = useFeedback();
+  const [feedbackArray, setFeedbackArray] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getUserFeedback().then((data) => {
+      setFeedbackArray(data.feedback);
+      console.log(feedbackArray);
+    });
+  }, []);
+
+  const handleFeedbackClick = (feedbackItem, index) => {
+    updateFeedback(feedbackArray[index].feedback);
+    navigate("/feedback");
+  };
+
   return (
     <div className="profile">
       <div className="profile__sidebar">
@@ -24,9 +44,27 @@ function Profile() {
         <h1 className="profile__title">My Feedback:</h1>
 
         <div className="profile__lectures">
-          <button className="profile__lecture-btn">Lecture 1</button>
-          <button className="profile__lecture-btn">Lecture 2</button>
-          <button className="profile__lecture-btn">Lecture 3</button>
+          {feedbackArray && feedbackArray.length > 0 ? (
+            feedbackArray
+              .slice()
+              .reverse()
+              .map((feedbackItem, index) => (
+                <button
+                  key={feedbackItem.id || index}
+                  className="profile__lecture-btn"
+                  onClick={() =>
+                    handleFeedbackClick(
+                      feedbackItem,
+                      feedbackArray.length - 1 - index
+                    )
+                  }
+                >
+                  Lecture {index + 1}
+                </button>
+              ))
+          ) : (
+            <p className="profile__no-lectures">No lectures available</p>
+          )}
         </div>
       </div>
     </div>

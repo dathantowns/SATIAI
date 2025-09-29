@@ -15,7 +15,7 @@ export function getUserFeedback(token) {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${getToken()}`,
     },
   }).then(checkRes);
 }
