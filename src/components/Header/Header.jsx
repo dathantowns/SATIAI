@@ -3,9 +3,15 @@ import "./Header.css";
 import satiLogo from "../../assets/satiLogo.svg";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { useNavigate } from "react-router-dom";
 
 function Header(props) {
   const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
+  const navigate = useNavigate();
+
+  const handleUsernameClick = () => {
+    navigate("/profile");
+  };
 
   return (
     <header className="header">
@@ -50,8 +56,11 @@ function Header(props) {
             </>
           )}
         </ul>
-        {isLoggedIn && <p className="header__username">{currentUser.name}</p>}
-        {isLoggedIn && <div className="header__avatar"></div>}
+        {isLoggedIn && (
+          <p className="header__username" onClick={handleUsernameClick}>
+            {currentUser.name}
+          </p>
+        )}
       </div>
     </header>
   );

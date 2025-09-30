@@ -80,6 +80,7 @@
   color: #f8931f;
   font-size: 20px;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .header__avatar {

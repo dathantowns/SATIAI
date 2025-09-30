@@ -4,16 +4,18 @@ import { getUserFeedback } from "../../../utils/api";
 import { useState, useEffect } from "react";
 import { useFeedback } from "../../contexts/FeedbackContext";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Profile() {
+function Profile({ openEditProfileModal }) {
   const { feedback, updateFeedback } = useFeedback();
   const [feedbackArray, setFeedbackArray] = useState([]);
+  const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     getUserFeedback().then((data) => {
       setFeedbackArray(data.feedback);
-      console.log(feedbackArray);
     });
   }, []);
 
@@ -26,17 +28,18 @@ function Profile() {
     <div className="profile">
       <div className="profile__sidebar">
         <div className="profile__user">
-          <div className="profile__avatar">
-            <span>D</span>
-          </div>
-          <h3 className="profile__username">Day Towns</h3>
+          <h3 className="profile__username">
+            {currentUser ? currentUser.name : "Loading..."}
+          </h3>
         </div>
 
         <nav className="profile__nav">
           <button className="profile__nav-item profile__nav-item--active">
             My Feedback
           </button>
-          <button className="profile__nav-item">Edit Profile</button>
+          <button className="profile__nav-item" onClick={openEditProfileModal}>
+            Edit Profile
+          </button>
         </nav>
       </div>
 
@@ -59,7 +62,8 @@ function Profile() {
                     )
                   }
                 >
-                  Lecture {index + 1}
+                  Lecture {index + 1} -{" "}
+                  {new Date(feedbackItem.createdAt).toLocaleDateString()}
                 </button>
               ))
           ) : (

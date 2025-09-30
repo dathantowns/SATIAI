@@ -120,7 +120,7 @@ function App() {
           setCurrentUser(res.data);
           setSeeEditProfileModal(false);
         })
-        .catch((err) => handleError(err));
+        .catch((err) => console.error("Edit Profile error:", err));
     }
   };
 
@@ -158,7 +158,10 @@ function App() {
               }
             />
             <Route path="/about" element={<About />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/profile"
+              element={<Profile openEditProfileModal={openEditProfileModal} />}
+            />
             <Route path="/feedback" element={<Feedback />} />
           </Routes>
         </Main>
