@@ -52,6 +52,19 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+@font-face {
+  font-family: "satiSerif";
+  src: url("./assets/fonts/DMSerifText-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Apply globally */
+body {
+  font-family: "satiSerif", -apple-system, BlinkMacSystemFont, serif;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

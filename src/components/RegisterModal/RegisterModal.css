@@ -12,7 +12,7 @@
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s linear 0.3s, opacity 0.3s ease-in;
-  font-family: "Cabinet", sans-serif;
+  font-family: "satiSerif", serif;
   color: rgba(0, 0, 0, 1);
   font-weight: 700;
   font-size: 16px;
@@ -82,7 +82,7 @@
   margin-top: 8px;
   margin-bottom: 24px;
   padding: 4px 0;
-  font-family: "Cabinet", sans-serif;
+  font-family: "satiSerif", serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
@@ -149,7 +149,7 @@
   border: none;
   width: max-content;
   color: rgba(0, 0, 0, 0.5);
-  font-family: "Cabinet", sans-serif;
+  font-family: "satiSerif", serif;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
