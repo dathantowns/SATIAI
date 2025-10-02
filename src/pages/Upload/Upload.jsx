@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Upload.css";
 import uploadBg from "../../assets/uploadBg.avif";
@@ -17,7 +17,7 @@ function Upload() {
   const [loadingMessage, setLoadingMessage] = useState("");
 
   // Use feedback context
-  const { feedback, updateFeedback, setFeedbackLoading } = useFeedback();
+  const { updateFeedback, setFeedbackLoading } = useFeedback();
 
   const handleAudioButtonClick = () => {
     // Trigger the hidden file input

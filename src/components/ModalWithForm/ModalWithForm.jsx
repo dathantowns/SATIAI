@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./ModalWithForm.css";
 
 export default function ModalWithForm(props) {

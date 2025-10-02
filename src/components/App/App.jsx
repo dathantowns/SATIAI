@@ -15,7 +15,7 @@ import Feedback from "../../pages/Feedback/Feedback";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
-import { login, register, checkToken } from "../../../utils/auth";
+import { login, register } from "../../../utils/auth";
 import { getUserData, updateUserData } from "../../../utils/api";
 
 // Inner component that has access to context
@@ -95,12 +95,6 @@ function App() {
       });
   };
 
-  const handleLogOut = () => {
-    localStorage.removeItem("jwt");
-    signOut(); // Use context method
-    // Handle navigation here
-  };
-
   const onClose = () => {
     setSeeLoginModal(false);
     setSeeRegisterModal(false);
@@ -122,6 +116,13 @@ function App() {
         })
         .catch((err) => console.error("Edit Profile error:", err));
     }
+  };
+
+  const handleLogOut = () => {
+    localStorage.removeItem("jwt");
+    setCurrentUser(null);
+    setIsLoggedIn(false);
+    navigate("/");
   };
 
   useEffect(() => {
@@ -160,7 +161,12 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route
               path="/profile"
-              element={<Profile openEditProfileModal={openEditProfileModal} />}
+              element={
+                <Profile
+                  openEditProfileModal={openEditProfileModal}
+                  handleLogOut={handleLogOut}
+                />
+              }
             />
             <Route path="/feedback" element={<Feedback />} />
           </Routes>

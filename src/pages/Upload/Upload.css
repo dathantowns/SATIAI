@@ -63,3 +63,128 @@
   margin: 0;
   font-weight: 500;
 }
+
+/* Large desktop screens for Upload page */
+@media (min-width: 1440px) {
+  .upload__title {
+    font-size: 120px;
+    margin-bottom: 80px;
+  }
+
+  .upload__buttons {
+    gap: 50px;
+  }
+
+  .upload__buttons .button {
+    font-size: 32px;
+    padding: 25px 50px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .upload__title {
+    font-size: 140px;
+    margin-bottom: 100px;
+  }
+
+  .upload__buttons .button {
+    font-size: 36px;
+    padding: 30px 60px;
+  }
+}
+
+/* Mobile styles for iPhone SE and similar small screens */
+@media (max-width: 480px) {
+  .upload {
+    height: calc(100vh - 60px); /* Account for smaller header on mobile */
+    margin: -10px;
+    margin-top: -20px;
+    padding: 20px 10px;
+  }
+
+  .upload__title {
+    font-size: 48px; /* Much smaller for mobile */
+    margin-bottom: 40px;
+    margin-top: 20px;
+    text-align: center;
+    line-height: 1.1;
+    padding: 0 10px;
+  }
+
+  .upload__buttons {
+    width: 90vw; /* Wider on mobile */
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 20px;
+    align-items: center;
+  }
+
+  .upload__buttons .button {
+    width: 200px; /* Fixed width for consistency */
+    height: 60px; /* Taller for easier touch */
+    font-size: 18px;
+    margin: 0; /* Remove any default margins */
+  }
+
+  .upload__file-info {
+    width: 90%;
+    max-width: 300px;
+    padding: 12px;
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+
+  .upload__progress {
+    width: 90%;
+    max-width: 300px;
+    padding: 12px;
+    margin-top: 15px;
+    font-size: 14px;
+  }
+}
+
+/* Extra small screens (iPhone SE portrait) */
+@media (max-width: 375px) and (max-height: 667px) {
+  .upload__title {
+    font-size: 36px;
+    margin-bottom: 30px;
+  }
+
+  .upload__buttons {
+    width: 95vw;
+    gap: 15px;
+  }
+
+  .upload__buttons .button {
+    width: 180px;
+    height: 55px;
+    font-size: 16px;
+  }
+}
+
+/* Landscape orientation for small screens */
+@media (max-width: 667px) and (max-height: 375px) and (orientation: landscape) {
+  .upload {
+    height: calc(100vh - 40px);
+    justify-content: flex-start;
+    padding-top: 10px;
+  }
+
+  .upload__title {
+    font-size: 32px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+
+  .upload__buttons {
+    flex-direction: row;
+    width: 80vw;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .upload__buttons .button {
+    width: 140px;
+    height: 50px;
+    font-size: 14px;
+  }
+}

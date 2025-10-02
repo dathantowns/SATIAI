@@ -7,10 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Profile({ openEditProfileModal }) {
-  const { feedback, updateFeedback } = useFeedback();
+function Profile({ openEditProfileModal, handleLogOut }) {
+  const { updateFeedback } = useFeedback();
   const [feedbackArray, setFeedbackArray] = useState([]);
-  const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,6 +39,9 @@ function Profile({ openEditProfileModal }) {
           </button>
           <button className="profile__nav-item" onClick={openEditProfileModal}>
             Edit Profile
+          </button>
+          <button className="profile__nav-item" onClick={handleLogOut}>
+            Log Out
           </button>
         </nav>
       </div>

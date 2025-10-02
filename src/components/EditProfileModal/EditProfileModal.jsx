@@ -9,7 +9,7 @@ const EditProfileModal = ({
   handleEditProfileSubmit,
 }) => {
   const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
+  const [_avatar, _setAvatar] = useState("");
   const { currentUser } = useContext(CurrentUserContext);
 
   useEffect(() => {

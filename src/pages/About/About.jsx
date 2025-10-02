@@ -3,7 +3,7 @@ import "./About.css";
 import aboutBg from "../../assets/aboutBg.avif";
 import Button from "../../components/Button/Button";
 
-function About(props) {
+function About() {
   return (
     <div className="about">
       <img src={aboutBg} alt="Background" className="about__bg" />

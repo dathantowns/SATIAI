@@ -9,16 +9,11 @@ const RegisterModal = ({
   openLoginModal,
 }) => {
   const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleNameChange = (e) => {
     setName(e.target.value);
-  };
-
-  const handleAvatarChange = (e) => {
-    setAvatar(e.target.value);
   };
 
   const handleEmailChange = (e) => {

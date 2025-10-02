@@ -12,7 +12,7 @@ function Feedback() {
     const sections = {};
 
     // Find headings like **Strengths:**
-    const pattern = /\*\*(.*?)\:\*\*/g;
+    const pattern = /\*\*(.*?):\*\*/g;
     const matches = [...text.matchAll(pattern)];
 
     // Add a sentinel to mark the end of the text
@@ -27,7 +27,7 @@ function Feedback() {
 
       // Extract numbered items like "1. ..."
       const items = [
-        ...sectionText.matchAll(/\d+\.\s+(.*?)(?=\n\d+\.|\Z)/gs),
+        ...sectionText.matchAll(/\d+\.\s+(.*?)(?=\n\d+\.|$)/gs),
       ].map((m) => m[1].replace(/\n/g, " ").trim());
 
       sections[sectionName] = items;

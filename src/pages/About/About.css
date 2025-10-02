@@ -39,3 +39,123 @@
   backdrop-filter: blur(10px);
   border-radius: 20px;
 }
+
+/* Large desktop screens for About page */
+@media (min-width: 1440px) {
+  .about__title {
+    font-size: 120px;
+    top: -80px;
+  }
+
+  .about__description {
+    font-size: 36px;
+    width: 50%;
+    padding: 40px;
+    border-radius: 25px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .about__title {
+    font-size: 140px;
+    top: -100px;
+  }
+
+  .about__description {
+    font-size: 42px;
+    width: 45%;
+    padding: 50px;
+    border-radius: 30px;
+  }
+}
+
+/* Tablet styles (iPad and similar) */
+@media (max-width: 768px) {
+  .about {
+    margin: -15px;
+    margin-top: -30px;
+    height: calc(100vh - 10vh);
+    padding: 20px 10px;
+  }
+
+  .about__title {
+    font-size: 60px;
+    top: -40px;
+    text-align: center;
+  }
+
+  .about__description {
+    font-size: 22px;
+    width: 80%;
+    padding: 25px 20px;
+    border-radius: 15px;
+  }
+}
+
+/* Mobile styles (iPhone SE and similar) */
+@media (max-width: 480px) {
+  .about {
+    margin: -10px;
+    margin-top: -20px;
+    height: calc(100vh - 8vh);
+    padding: 15px 8px;
+    justify-content: flex-start;
+    padding-top: 60px;
+  }
+
+  .about__title {
+    font-size: 36px;
+    top: 0;
+    margin-bottom: 30px;
+    text-align: center;
+    line-height: 1.1;
+  }
+
+  .about__description {
+    font-size: 16px;
+    width: 90%;
+    padding: 20px 15px;
+    border-radius: 12px;
+    line-height: 1.5;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 375px) {
+  .about {
+    padding: 10px 5px;
+    padding-top: 50px;
+  }
+
+  .about__title {
+    font-size: 32px;
+    margin-bottom: 25px;
+  }
+
+  .about__description {
+    font-size: 14px;
+    width: 95%;
+    padding: 18px 12px;
+    border-radius: 10px;
+  }
+}
+
+/* Landscape orientation for small screens */
+@media (max-width: 667px) and (max-height: 375px) and (orientation: landscape) {
+  .about {
+    justify-content: center;
+    padding-top: 20px;
+  }
+
+  .about__title {
+    font-size: 28px;
+    margin-bottom: 15px;
+    top: -20px;
+  }
+
+  .about__description {
+    font-size: 14px;
+    width: 70%;
+    padding: 15px 12px;
+  }
+}
