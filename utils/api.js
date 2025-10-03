@@ -7,7 +7,7 @@ export const checkRes = (res) => {
 
 export const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "productionLink"
+    ? "https://api.satimentor.crabdance.com"
     : "http://localhost:3001";
 
 export function getUserFeedback() {
