@@ -4,9 +4,9 @@
 
 https://satimentor.crabdance.com
 
-# Back-end Repository
+# Deployed Back-end
 
-https://github.com/dathantowns/sati-backend.git
+https://api.satimentor.crabdance.com
 
 # Description
 
