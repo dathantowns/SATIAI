@@ -1,0 +1,283 @@
+.header {
+  width: 100%;
+  height: 12vh;
+  min-height: 80px;
+  background-color: white;
+  margin: 0;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  overflow: hidden; /* Prevent overflow */
+}
+
+.header__logo-container {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.header__logo {
+  height: 50px; /* Much smaller, reasonable size */
+  width: auto;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.header__title {
+  margin: 0;
+  margin-left: 15px;
+  font-size: 24px;
+  color: #f8931f;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 30px;
+}
+
+.header__nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 25px;
+  align-items: center;
+}
+
+.header__nav-item {
+  color: #1b1464;
+  font-size: 18px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.header__nav-item:hover {
+  color: #f8931f;
+}
+
+.header__nav-item a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.header__nav-item a:hover {
+  color: #f8931f;
+}
+
+.header__title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header__username {
+  color: #f8931f;
+  font-size: 20px;
+  margin-right: 15px;
+  margin-left: 15px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.header__avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #1b1464;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Large desktop screens */
+@media (min-width: 1440px) {
+  .header {
+    padding: 0 60px;
+    min-height: 90px;
+  }
+
+  .header__logo {
+    height: 60px;
+  }
+
+  .header__title {
+    font-size: 28px;
+    margin-left: 20px;
+  }
+
+  .header__nav {
+    gap: 40px;
+  }
+
+  .header__nav-list {
+    gap: 35px;
+  }
+
+  .header__nav-item {
+    font-size: 22px;
+  }
+
+  .header__username {
+    font-size: 24px;
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+
+  .header__avatar {
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+  }
+}
+
+/* Extra large screens */
+@media (min-width: 1920px) {
+  .header {
+    padding: 0 80px;
+    min-height: 100px;
+  }
+
+  .header__logo {
+    height: 70px;
+  }
+
+  .header__title {
+    font-size: 32px;
+    margin-left: 25px;
+  }
+
+  .header__nav-list {
+    gap: 45px;
+  }
+
+  .header__nav-item {
+    font-size: 26px;
+  }
+
+  .header__username {
+    font-size: 28px;
+    margin-right: 25px;
+  }
+
+  .header__avatar {
+    width: 65px;
+    height: 65px;
+    font-size: 26px;
+  }
+}
+
+/* Tablet styles */
+@media (max-width: 768px) {
+  .header {
+    padding: 0 20px;
+    height: 10vh;
+    min-height: 60px;
+  }
+
+  .header__logo {
+    height: 40px;
+  }
+
+  .header__title {
+    font-size: 18px;
+    margin-left: 10px;
+  }
+
+  .header__nav-list {
+    gap: 15px;
+  }
+
+  .header__nav-item {
+    font-size: 14px;
+  }
+
+  .header__username {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+
+  .header__avatar {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .header {
+    padding: 0 15px;
+    height: 8vh;
+    min-height: 50px;
+  }
+
+  .header__logo {
+    height: 30px;
+  }
+
+  .header__title {
+    font-size: 16px;
+    margin-left: 8px;
+  }
+
+  .header__nav-list {
+    gap: 10px;
+  }
+
+  .header__nav-item {
+    font-size: 12px;
+  }
+
+  .header__username {
+    font-size: 14px;
+    margin-right: 8px;
+  }
+
+  .header__avatar {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 375px) {
+  .header {
+    padding: 0 10px;
+  }
+
+  .header__logo {
+    height: 25px;
+  }
+
+  .header__title {
+    font-size: 14px;
+    margin-left: 6px;
+  }
+
+  .header__nav-item {
+    font-size: 11px;
+  }
+
+  .header__username {
+    font-size: 12px;
+    margin-right: 6px;
+  }
+
+  .header__avatar {
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+  }
+}

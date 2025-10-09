@@ -1,0 +1,134 @@
+.edit-profile-modal {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.3s, opacity 0.3s ease-in;
+  font-family: "satiSerif", serif;
+  color: rgba(0, 0, 0, 1);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+}
+.edit-profile-modal__header {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+  margin: 0;
+}
+.edit-profile-modal__container {
+  background-color: white;
+  padding: 32px 50px 0;
+  width: 100%;
+  max-width: 496px;
+  height: min-content;
+  border-radius: 8px;
+  height: 16px;
+}
+
+.edit-profile-modal__header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 32px 0;
+}
+
+.edit-profile-modal__title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  border: none;
+}
+
+.edit-profile-modal__close-btn {
+  background-image: url(../../images/close-button.svg);
+  background-size: cover;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  opacity: 0.5;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.edit-profile-modal__close-btn:hover {
+  opacity: 100%;
+  border: none;
+}
+.edit-profile-modal__form {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border: none;
+}
+
+.edit-profile-modal__label {
+  margin-bottom: 32px;
+}
+
+.edit-profile-modal__input {
+  width: 100%;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 16px 0;
+  font-family: "satiSerif", serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  border: none;
+  border-bottom: 1px solid;
+}
+.edit-profile-modal__input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+.edit-profile-modal__input:hover {
+  border-bottom: 2px solid;
+}
+.edit-profile-modal__input:focus {
+  border-color: initial;
+  outline: none;
+}
+
+.edit-profile-modal__input-error {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 110.00000000000001%;
+  color: rgba(255, 0, 0, 0.7);
+  visibility: hidden;
+}
+.edit-profile-modal__input-error_visible {
+  visibility: visible;
+}
+
+.edit-profile-modal__buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.edit-profile-modal__save-btn {
+  width: max-content;
+  padding: 8px 16px;
+  color: rgba(252, 245, 229, 1);
+  background-color: rgba(33, 33, 33, 1);
+  border-radius: 4px;
+  margin-bottom: 32px;
+  transition: background-color 0.5s ease;
+  cursor: pointer;
+  border: none;
+}
+.edit-profile-modal__save-btn:hover {
+  background-color: rgba(33, 33, 33, 0.6);
+}
+.edit-profile-modal__save-btn_disabled {
+  background-color: rgba(33, 33, 33, 0.3);
+}
