@@ -17,6 +17,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import { login, register } from "../../../utils/auth";
 import { getUserData, updateUserData } from "../../../utils/api";
+import Chat from "../../pages/Chat/Chat";
 
 // Inner component that has access to context
 function App() {
@@ -169,6 +170,7 @@ function App() {
               }
             />
             <Route path="/feedback" element={<Feedback />} />
+            <Route path="/chat" element={<Chat />} />
           </Routes>
         </Main>
         <Footer />

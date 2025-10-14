@@ -61,4 +61,21 @@ export function uploadText(formData) {
   }).then(checkRes);
 }
 
+export function sendMessage(messages) {
+  // Convert frontend messages to the format backend expects
+  const conversation = messages.map((msg) => ({
+    role: msg.type === "sent" ? "user" : "assistant",
+    content: msg.message,
+  }));
+
+  return fetch(`${baseUrl}/chat`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getToken()}`,
+    },
+    body: JSON.stringify({ messages: conversation }),
+  }).then(checkRes);
+}
+
 export const getToken = () => localStorage.getItem("jwt");

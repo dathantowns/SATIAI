@@ -32,6 +32,9 @@ function Header(props) {
                 <Link to="/">Upload</Link>
               </li>
               <li className="header__nav-item">
+                <Link to="/chat">Chat</Link>
+              </li>
+              <li className="header__nav-item">
                 <Link to="/profile">Profile</Link>
               </li>
               <li className="header__nav-item">
