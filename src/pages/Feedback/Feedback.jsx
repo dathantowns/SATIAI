@@ -11,26 +11,48 @@ function Feedback() {
   function parseFeedback(text) {
     const sections = {};
 
-    // Find headings like **Strengths:**
-    const pattern = /\*\*(.*?):\*\*/g;
-    const matches = [...text.matchAll(pattern)];
+    // Find main headings like **Object Lesson:**
+    const mainPattern = /\*\*(.*?):\*\*/g;
+    const mainMatches = [...text.matchAll(mainPattern)];
 
     // Add a sentinel to mark the end of the text
-    matches.push({ 1: "END", index: text.length });
+    mainMatches.push({ 1: "END", index: text.length });
 
-    for (let i = 0; i < matches.length - 1; i++) {
-      const sectionName = matches[i][1].trim();
-      const start = matches[i].index;
-      const end = matches[i + 1].index;
+    for (let i = 0; i < mainMatches.length - 1; i++) {
+      const mainSectionName = mainMatches[i][1].trim();
+      const start = mainMatches[i].index;
+      const end = mainMatches[i + 1].index;
 
-      const sectionText = text.slice(start, end).trim();
+      const mainSectionText = text.slice(start, end).trim();
 
-      // Extract numbered items like "1. ..."
-      const items = [
-        ...sectionText.matchAll(/\d+\.\s+(.*?)(?=\n\d+\.|$)/gs),
-      ].map((m) => m[1].replace(/\n/g, " ").trim());
+      // Initialize the main section
+      sections[mainSectionName] = {};
 
-      sections[sectionName] = items;
+      // Find subsections like "Strengths:" and "Areas for Improvement:"
+      const subPattern = /^([A-Za-z\s]+):\s*$/gm;
+      const subMatches = [...mainSectionText.matchAll(subPattern)];
+
+      // Add a sentinel for the last subsection
+      subMatches.push({ 1: "END", index: mainSectionText.length });
+
+      for (let j = 0; j < subMatches.length - 1; j++) {
+        const subSectionName = subMatches[j][1].trim();
+        const subStart = subMatches[j].index;
+        const subEnd = subMatches[j + 1].index;
+
+        const subSectionText = mainSectionText.slice(subStart, subEnd).trim();
+
+        // Extract numbered items like "1. ..."
+        const items = [
+          ...subSectionText.matchAll(
+            /^\d+\.\s+(.*?)(?=\n\d+\.|\n[A-Za-z]|$)/gms
+          ),
+        ].map((m) => m[1].replace(/\n/g, " ").trim());
+
+        if (items.length > 0) {
+          sections[mainSectionName][subSectionName] = items;
+        }
+      }
     }
 
     return sections;
@@ -87,38 +109,20 @@ function Feedback() {
 
       <div className="feedback__cards">
         <FeedbackCard
-          title="Strengths"
-          content={
-            parsedFeedback?.Strengths?.join("\n• ")
-              ? `• ${parsedFeedback.Strengths.join("\n• ")}`
-              : parsedFeedback?.strengths ||
-                feedback?.strengths ||
-                "No strengths data available."
-          }
+          title="Object Lesson"
+          content={parsedFeedback?.["Object Lesson"]}
           color="success"
         />
 
         <FeedbackCard
-          title="Areas For Improvement"
-          content={
-            parsedFeedback?.["Areas for Improvement"]?.join("\n• ")
-              ? `• ${parsedFeedback["Areas for Improvement"].join("\n• ")}`
-              : parsedFeedback?.improvements ||
-                feedback?.improvements ||
-                "No improvement suggestions available."
-          }
+          title="Concept Lesson"
+          content={parsedFeedback?.["Concept Lesson"]}
           color="info"
         />
 
         <FeedbackCard
-          title="Summary"
-          content={
-            parsedFeedback?.Summary?.join("\n• ")
-              ? `• ${parsedFeedback.Summary.join("\n• ")}`
-              : parsedFeedback?.summary ||
-                feedback?.summary ||
-                "No summary available."
-          }
+          title="Teacher as Catalyst"
+          content={parsedFeedback?.["Teacher as Catalyst"]}
           color="warning"
         />
       </div>
