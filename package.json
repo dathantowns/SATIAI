@@ -9,7 +9,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "npm run build && scp -r ./dist/* dathantowns@satimentor.crabdance.com:/home/dathantowns/frontend"
+    "deploy": "npm run build && scp -r ./dist/* dathantowns@satimentor.com:/home/dathantowns/frontend"
   },
   "dependencies": {
     "react": "^19.1.1",

@@ -1,6 +1,7 @@
 .profile {
   display: flex;
-  height: calc(100vh - 80px); /* Adjust based on your header height */
+  min-height: calc(100vh - 80px);
+  height: min-content;
   width: 100%;
 }
 
